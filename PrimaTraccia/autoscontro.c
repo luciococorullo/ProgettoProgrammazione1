@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 
 #define L_GRL       8 // larghezza della griglia, modificabile
 #define A_GRL       8 // altezza della griglia, modificabile
-#define TOT_AUTO    3 // quantita' d'auto presenti nella griglia
+#define TOT_AUTO    4 // quantita' d'auto presenti nella griglia
 #define MAXN        15// numero massimo di lettere del nome
 
 typedef enum {destra=1,sinistra,avanti,indietro}direzione;
@@ -27,21 +28,26 @@ typedef struct Macchine {
  macchine automobili [] = {
      {"Macchina 1",3,0,'W',20,10,30,40},
      {"Macchina 2",0,3,'S',25,25,25,25},
-     {"Macchina 3",3,7,'A',30,20,45,5}
-     //da definire {"Macchina 4",0,7,}
+     {"Macchina 3",3,7,'A',30,20,45,5},
+     {"Macchina 4",7,3,'D',25,25,25,25},
  };
 
+void benvenuto();
 void stampagriglia(char [L_GRL][A_GRL]);
 void reset(macchine *);
 boolean scontro(macchine *);
 int nrnd();
 int gestione(int , int , int , int );
+double distanza(macchine *,int);
+double distanzamin(double[],int);
 void grazie();
 
  int main() {
     int i,j;
-    int gioca;
+    int n=3;
     char griglia[A_GRL][L_GRL];
+    double distanze[n];
+    double minima;
 
     for(i=0;i<A_GRL;i++){
        for(j=0;j<L_GRL;j++)
@@ -51,16 +57,14 @@ void grazie();
     griglia[3][0] = automobili[0].simbolo;
     griglia[0][3] = automobili[1].simbolo;
     griglia[3][7] = automobili[2].simbolo;
-    //griglia[7][3] = automobili[3].simbolo;
+    griglia[7][3] = automobili[3].simbolo;
 
     printf("\n");//creo spazio dal bordo
     printf(" ");//creo spazio
 
-    
-    printf("\n\n============================================\n");
-    printf("||     Benvenuto nell'autosconto          ||\n");
-    printf("============================================\n\n\n");
 
+
+    benvenuto();
     stampagriglia(griglia);
     boolean scontri=falso;
 
@@ -80,6 +84,8 @@ void grazie();
         direzionemacchine=gestione(numerocasuale,automobili[i].destra,automobili[i].sinistra,automobili[i].avanti);
 
 
+        distanze[i]=distanza(automobili,i);
+
         switch (direzionemacchine){
 
         case avanti:
@@ -95,7 +101,7 @@ void grazie();
         }else
         printf("La macchina %c e' rimasta ferma\n",automobili[i].simbolo);
         break;
-        
+
 
         case indietro:
         if(automobili[i].x<A_GRL-1){
@@ -144,22 +150,30 @@ void grazie();
         default:
         return 0;
         }
-        
-        
+
+
     }
     printf("\n\n==========================================\n\n\n");
+
+    minima=distanzamin(distanze,n);
+    printf("\nla distanza minima e' %f\n",minima);
+    
     stampagriglia(griglia);
 
     int scelta;
     printf("\nPronto per il prossimo turno?Premi 1\n");
     scanf("%d",&scelta);
     }
-    
+
     grazie();
     return 0;
 }
 
-
+void benvenuto(){
+        printf("\n\n============================================\n");
+    printf("||     Benvenuto nell'autosconto          ||\n");
+    printf("============================================\n\n\n");
+}
 void stampagriglia(char griglia[L_GRL][A_GRL]){
 
     int i;
@@ -242,11 +256,11 @@ int gestione(int numerocasuale, int p_1, int p_2, int p_3){
     else
     return 4;
     }
-    
-    void grazie(){
-    printf("\n\n========================================================\n");
-    printf("||        Grazie per aver giocato!                    ||\n");
-    printf("========================================================\n\n\n");
+
+void grazie(){
+printf("\n\n========================================================\n");
+printf("||        Grazie per aver giocato!                    ||\n");
+printf("========================================================\n\n\n");
 }
 
 void reset(macchine *automobili){
@@ -254,4 +268,20 @@ void reset(macchine *automobili){
     automobili[1].destra=25;
     automobili[1].sinistra=25;
     automobili[1].indietro=25;
+}
+
+double distanza(macchine *automobili,int i){
+    return sqrt((pow(automobili[i].x - automobili[3].x, 2) + pow(automobili[i].y - automobili[3].y, 2)));
+}
+double distanzamin(double distanze[],int n){
+
+	double min;
+    if(n==1)
+    return distanze[0];
+    min=distanzamin(&distanze[1],n-1);
+    if(min<distanze[0]){
+    return min;
+	}else{
+	return distanze[0];
+}
 }
