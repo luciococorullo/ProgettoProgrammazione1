@@ -6,7 +6,11 @@
 
 #define L_GRL       8                     // larghezza della griglia, modificabile
 #define A_GRL       8                     // altezza della griglia, modificabile
+<<<<<<< HEAD
 #define TOT_AUTO    3                     // quantita' d'auto presenti nella griglia
+=======
+#define TOT_AUTO    4                     // quantita' d'auto presenti nella griglia
+>>>>>>> master
 #define MAXN        15                    // numero massimo di lettere del nome
 
 typedef enum {destra=1,sinistra,avanti,indietro}direzione;
@@ -42,7 +46,10 @@ int gestione(int , int , int , int );     //funzione che gestisce l'assegnamento
 double distanza(macchine *,int);          //funzione che calcola la distanza tra la macchina 4 e le altre macchine
 double distanzamin(double[],int);         //funzione ricorsiva per il calcolo della distanza minima
 int macmin(double [],double );            //funzione che ritorna quale macchina si trova alla distanza minima dalla macchina 4
+<<<<<<< HEAD
 int gestionemacx(macchine *,int );
+=======
+>>>>>>> master
 void grazie();                            //funzione che stampa il ringraziamento
 
 
@@ -68,15 +75,27 @@ void grazie();                            //funzione che stampa il ringraziament
     printf(" ");                        //creo spazio
 
 
+<<<<<<< HEAD
     benvenuto();                        //printo il messaggio di benvenuto
+=======
+    benvenuto();
+
+    stampagriglia(griglia);
+    printf("\nQuesta e' la griglia di partenza\n==========================================\n\n\n");
+    boolean scontri=falso;
+>>>>>>> master
 
     stampagriglia(griglia);             //stampo la griglia di partenza
     printf("\nQuesta e' la griglia di partenza\n==========================================\n\n\n");
     boolean scontri=falso;              //dichiaro una variabile scontri di tipo boolean e la inizializzo a falso
 
+<<<<<<< HEAD
     while(!scontri){                    //ciclo che si ripete fino a quando non si verifica uno scontro
 
     for(i=0;i<TOT_AUTO;i++){            //ciclo for che gestisce le prime tre macchine
+=======
+    for(i=0;i<TOT_AUTO-1;i++){
+>>>>>>> master
 
         int turno;
         turno += 1;                      
@@ -161,6 +180,7 @@ void grazie();                            //funzione che stampa il ringraziament
 
     }
 
+<<<<<<< HEAD
 
     minima=distanzamin(distanze,n);      //utilizzo la funzione ricorsiva distanza min per calcolare quale e' la distanza minima con la macchina numero 4       
 
@@ -226,6 +246,17 @@ void grazie();                            //funzione che stampa il ringraziament
     printf("\nla distanza minima e' %f con la macchina %d\n",minima,macx);
     printf("\n\n==========================================\n\n\n");
 
+=======
+
+    minima=distanzamin(distanze,n);
+
+    int macx;
+    macx=macmin(distanze,minima);
+    printf("\nla distanza minima e' %f con la macchina %d\n",minima,macx);
+
+    printf("\n\n==========================================\n\n\n");
+
+>>>>>>> master
 
     stampagriglia(griglia);
 
@@ -378,6 +409,7 @@ void svuota(char griglia[L_GRL][A_GRL]){
        griglia[i][j]=' ';
     }
 }
+<<<<<<< HEAD
 
 int gestionemacx(macchine *automobili,int macx){
 
@@ -412,3 +444,5 @@ int gestionemacx(macchine *automobili,int macx){
     return 6;
     }
 }
+=======
+>>>>>>> master
