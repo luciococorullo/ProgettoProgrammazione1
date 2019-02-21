@@ -1,0 +1,226 @@
+<html>
+    <head>
+        <title>
+            Autoscontro
+        </title>
+    </head>
+    <body BGCOLOR="#e0ffff">
+        <h2 align="center">
+            <font face="verdana">
+                Prima traccia: autoscontro<p>
+            </font>
+        </h2>
+        <HR WIDTH=50%> 
+        <h4>
+            <font face="verdana">
+                <p><blackquote>Si supponga di avere quattro macchine al centro dei quattro lati opposti di una griglia. Le macchine possono muoversi in una della quattro posizioni vicine.
+                La griglia è formata da mura esterne ed è di 8x8 caselle.
+                Si supponga che ogni macchina si muova seguendo le seguenti regole:
+                o La macchina 1 può andare a destra con probabilità 20% a sinistra con
+                probabilità del 10%, in avanti con probabilità del 30 % e indietro con
+                probabilità del 40%.
+                o La macchina 2 osserva i movimenti della macchina 1 e con una probabilità
+                del 30% sceglie la stessa direzione.
+                o La macchina 3 può andare a destra con probabilità 30% a sinistra con
+                probabilità del 20%, in avanti con probabilità del 5 % e indietro con
+                probabilità del 45%.
+                o La macchina 4 osserva le direzioni delle altre auto e si sposta nella direzione
+                di minima distanza (usare un algoritmo ricorsivo per calcolare la minima
+                distanza).
+                La simulazione finisce quando si verifica uno scontro tra almeno due macchine.
+                L’algoritmo usa la function rand() in stdlib per generare numeri casuali: si
+                ricorda che, per esempio, se numero_casuale è un int, la chiamata
+                numero_casuale=rand()%11; genera un numero casuale intero (distribuzione
+                uniforme) nell’insieme (0,1,2,3,4,5,6,7,8,9,10). Usare sempre la srand() per rendere
+                automatica la scelta iniziale del seed della sequenza di numeri casuali. Effettuare almeno
+                5 simulazioni.
+            </blackquote>
+            </font>
+        </h4>
+        <h3 align="center">
+            <font face ="verdana">
+                <a href="c/autoscontro.c">
+               <p>Main in C commentato<p>
+            </a>
+            <a href="c/autofun.c">
+                <p>File con le funzioni commentate<p>
+             </a>
+             <a href="c/autofun.h">
+                <p>File header<p>
+             </a>
+        <a href="index.html">
+            Home page<p>
+        </a>
+            </font>
+        </h3>
+        <h3 align="left">
+            <font face ="verdana">
+            Prima simulazione:<br>
+            <img src="images/prima_simulazione.jpg" align="left"><p>
+        </h3>
+        <h3 align="left">
+            In questa prima simulazione la quarta macchina con il simbolo D,
+            il cui movimento e' gestito dal secondo switch, va a scontrarsi con la macchina A
+            che rimane ferma bloccata dal muro superiore.<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            &nbsp<p>
+            </h3>
+        <h3>
+                <font face ="verdana">
+                <p>Seconda simulazione:<br>
+                <img src="images/seconda_simulazione.jpg" align="left">
+            </h3>
+            <h3 align="left">
+                In questa seconda simulazione la quarta macchina con il simbolo D si muove verso la macchina
+                a distanza minima, in questo caso la macchina W che e' ferma nell'angolo in basso a sinistra.
+                &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+            </h3>
+            <h3 align="left">
+                    <font face ="verdana">
+                    Terza simulazione:<br>
+                    <img src="images/terza_simulazione.jpg" align="left"><p>
+                </h3>
+                <h3 align="left">
+                    In questa terza simulazione nell'ultimo turno vediamo come la macchina
+                    con il simbolo S si sposti a sinistra e vada a scontrarsi con la macchina D che era in quella posizione
+                    .<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                    &nbsp<p>
+                </h3>
+        <h3 align="left">
+        <font face ="verdana">
+         Quarta simulazione:<br>
+           <img src="images/quarta_simulazione.jpg" align="left"><p>
+                </h3>
+                 <h3 align="left">
+                        In questa quarta simulazione nell'ultimo turno ci troviamo in una situazione un po'
+                        particolare, infatti nello stesso turno si scontrano tutte e quattro le macchine:
+                        la macchina S si muove verso sinistra nell'angolo in alto a sinistra mentre la macchina W 
+                        si sposta in avanti proprio nella nuova posizione della macchina S.
+                        La macchina D invece si sposta verso la macchina A grazie al suo
+                        algoritmo di movimento ma anche la macchina A si muove verso la D provocando uno scontro.
+                        .<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                    </h3>
+
+    <h3 align="left">
+        <font face ="verdana">
+         Quinta simulazione:<br>
+           <img src="images/quinta_simulazione.jpg" align="left"><p>
+                </h3>
+                 <h3 align="left">
+                        In questa quinta simulazione la macchina D si muove verso la macchina S che rimane ferma
+                        a causa del muro e non puo allontanarsi dall'arrivo della macchina D 
+                        .<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                        &nbsp<p>
+                    </h3>                
+    </body>
+</html>

@@ -1,77 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-
-void benvenuto();
-void displayfrase(char *frase);
-void grazie();
-
-#define  MAXW 20
-#define  CON  5
-#define  MAXF 100
-#define  SPAZIO " "
-
-typedef struct parola{
-    char termine[MAXW];
-    char contrario[CON][MAXW];
-}structparola;
-
-static structparola paroledizionario[]={
-    //lettera A
-    {"alzare",{"abbassare","calare"}},
-    {"aprire",{"chiudere","bloccare"}},
-    {"allegro",{"triste","serio"}},
-    //lettera B
-    {"bello",{"orrendo","brutto"}},
-    {"brutto",{"bello","carino"}},
-    {"bullismo",{"educazione","rispetto"}},
-    //lettera C
-    {"complicato",{"facile","semplice"}},
-    {"costoso",{"economico","leggero"}},
-    //lettera D
-    {"distante",{"vicino","prossimo"}},
-    //lettera E
-    {"esigente",{"superficiale","leggero"}},
-    //lettera F
-    {"faticoso",{"piacevole","spicciativo"}},
-    {"felice",{"triste","malinconico"}},
-    //lettera G
-    {"grande",{"piccolo","irrilevante"}},
-    {"gustoso",{"disgustoso","brutto"}},
-    //lettera I
-    {"irregolare",{"regolare","proporzionato"}},
-    //lettera L
-    {"leggero",{"pesante","faticoso"}},
-    {"lecito",{"illecito","ingiusto"}},
-    //lettera M
-    {"morbido",{"duro","solido"}},
-    {"magro",{"grasso","obeso"}},
-    {"magra",{"grassa","obesa"}},
-    //lettera N
-    {"normale",{"strano","diverso"}},
-    //lettera O
-    {"orrendo",{"bello","piacevole"}},
-    {"ordinato",{"disordinato",""}},
-    //lettera P
-    {"partire",{"tornare","venire"}},
-    {"prezioso",{"comune","banale"}},
-    {"pazzo",{"normale","sano"}},
-    {"pesante",{"lieve","semplice"}},
-    //lettera Q
-    {"qualificato",{"incompetente","inesperto"}},
-    //lettera R
-    {"rapido",{"lento","calmo"}},
-    //lettera S
-    {"spegnere",{"accendere","avviare"}},
-    //lettera T
-    {"tardi",{"presto","anticipo"}},
-    //lettera U
-    {"uscita",{"ingresso","entrata"}},
-    //lettera V
-    {"veloce",{"lento","pigro"}},
-    //lettera Z
-    {"zuccherato",{"amaro","salato"}}
-    };
-
+#include "diz_fun.h"
 int main(){
 
     char frase[MAXF];
@@ -79,33 +6,34 @@ int main(){
     int risposta;
     int i=0,k,j;
     char *parole[100];
-    char separatori[] = {' ','\0','\n'};
-    int numero_parole = sizeof(paroledizionario)/sizeof(paroledizionario[0]);
-    
-    
-    benvenuto();
-    
+    char separatori[] = {' ','\0','\n'};                                        //dichiaro un array di separatori
+    int numero_parole = sizeof(paroledizionario)/sizeof(paroledizionario[0]);   //questo corrisponde al numero delle parole presenti nel dizionario
+
+
+
+    benvenuto();                                                                //utilizzo la function di benvenuto che printa la grafica iniziale
+
     printf("Inserisci la frase: ");
     fgets(frase, 4096, stdin);
-    parola_frase = strtok(frase, separatori);
-    
+    parola_frase = strtok(frase, separatori);                                   //spezzetto la frase dai separatori e metto la parola in "parola_frase"
+
     printf("============================================\n\n");
 
-    while (parola_frase != NULL) {
-        parole[i++] = strdup(parola_frase);
+    while (parola_frase != NULL) {                                              //fino a quando ci sono parole nella frase
+        parole[i++] = strdup(parola_frase);                                     //metto le parole della frase in un array di parole
         parola_frase = strtok(NULL," \n");
     }
-    
-    
+
+
     strcpy(frase, "");
-  
-    
+
+
     for (k = 0; k < i; k++) {
         for (j = 0; j < numero_parole; j++) {
 
-            if (strcmp(parole[k], paroledizionario[j].termine) == 0){
+            if (strcmp(parole[k], paroledizionario[j].termine) == 0){       //uso la function strcmp per confrontare la parola e il dizionario e vedere se la parola e' presente
 
-            printf("La parola %s e' presente nel dizionario,vuoi ricercare il contrario?\n",parole[k]);  
+            printf("La parola %s e' presente nel dizionario,vuoi ricercare il contrario?\n",parole[k]);
             printf("Premi 1 per si e 0 per no ---->");
             scanf("%d",&risposta);
             printf("\n");
@@ -113,40 +41,24 @@ int main(){
             switch(risposta){
 
                 case 1:
-                strcpy(parole[k], paroledizionario[j].contrario[0]);
+                strcpy(parole[k], paroledizionario[j].contrario[0]);        //se la parola e'presente e l'utente acconsente sostituisco la parola con il contrario presente nel dizionario
                 break;
 
-                case 0:
+                case 0:                                                     //se l'utente non vuole non sostituisco la parola
                 break;
 
                 default:
                 printf("Comando sconosciuto, la parola non verra' modificata\n");
             }
             }
-            
+
         }
-        strcat(frase, parole[k]);
+        strcat(frase, parole[k]);                                           //ricostruisco la frase precedentemente frammentata
         strcat(frase, " ");
     }
-    displayfrase(frase);
-    grazie();
+    displayfrase(frase);                                                     //funzione che printa la frase
+    grazie();                                                                //funzione che printa il ringraziamento finale
 
     return 0;
 }
 
-
-void benvenuto(){
-    printf("\n\n============================================\n");
-    printf("|| Benvenuto nel dizionario dei contrari  ||\n");
-    printf("============================================\n\n\n");
-}
-void displayfrase(char *frase){
-    printf("\nLa frase ora e':\n");
-    printf("%s\n", frase);
-    printf("===============================================\n\n");
-}
-void grazie(){
-    printf("\n\n===========================================================\n");
-    printf("|| Grazie per aver utilizzato il dizionario dei contrari!||\n");
-    printf("===========================================================\n\n\n");
-}
